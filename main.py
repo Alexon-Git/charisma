@@ -3,6 +3,7 @@ import asyncio
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command
 from core.settings import settings
+from core.handlers.basic import *
 
 
 async def start():
@@ -12,6 +13,10 @@ async def start():
     dp = Dispatcher()
 
     dp.message.register(start_command, Command(commands=['start']))
+    dp.callback_query.register(reg_name, F.data.startswith("political"))
+    dp.message.register(reg_phone, LK.name)
+    dp.message.register(check_CRM, LK.phone)
+
 
 
     try:
