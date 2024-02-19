@@ -28,14 +28,13 @@ def get_settings(path: str):
 
 settings = get_settings('config')
 
-connection = sqlite3.connect("core/base.db")
-cursor  = connection.cursor()
+scope = ['https://www.googleapis.com/auth/spreadsheets']
+credentials = service_account.Credentials.from_service_account_file('core/cred.json')
+client = gspread.authorize(credentials.with_scopes(scope))
+sheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1CdDH-Np5juUXCo20Z-btGZmcZ24Q-F4YTrUnVsWAx8E/edit#gid=0')
+worksheet_no_pay= sheet.worksheet('Оставившие заявку')
+worksheet_speaker = sheet.worksheet('Спикеры')
+worksheet_tariffs = sheet.worksheet('Тарифы')
+worksheet_Dop = sheet.worksheet('ДОП инфо')
 
-# scope = ['https://www.googleapis.com/auth/spreadsheets']
-# credentials = service_account.Credentials.from_service_account_file('core/cred.json')
-# client = gspread.authorize(credentials.with_scopes(scope))
-# sheet = client.open_by_url('https://docs.google.com/spreadsheets/d/16XBlws6qIfZ7q9yPhqocrywvwZn4XBqYwrRoJLzJp2k/edit#gid=558743972')
-# worksheet = sheet.get_worksheet(0)
-# worksheet_user = sheet.worksheet('UserBot')
-# worksheet_stocks = sheet.get_worksheet(2)
 

@@ -5,7 +5,8 @@ from aiogram.types import Message,CallbackQuery
 from core.keyboards.inline import *
 from core.keyboards.reply import *
 from core.message.text import *
-from core.settings import cursor, connection   # переменная подключения к базе
+from core.message.opport_text import *
+# from core.settings import cursor, connection   # переменная подключения к базе
 # import database
 
 
@@ -22,12 +23,12 @@ class LK(StatesGroup):
     size = State()
 
 async def start_command(message: Message):
-    await message.text(start_text, reply_markup=coglasie)
+    await message.answer(start_text, reply_markup=soglasie)
 
 async def reg_name(call: CallbackQuery, state: FSMContext):
     await state.set_state(LK.name)
     await call.answer()
-    await call.message.text("Как я могу к Вам обращаться?")
+    await call.message.answer("Как я могу к Вам обращаться?")
 
 #сохзранение в базу id и указанное имя
 async def reg_phone(message: Message, state: FSMContext):
@@ -37,4 +38,12 @@ async def reg_phone(message: Message, state: FSMContext):
 
 # происходить проверка по CRM
 async def check_CRM(message: Message, state: FSMContext):
-    await message.text()
+    await message.answer()
+
+
+
+
+async def greeting_application(message: Message, state: FSMContext):
+    await state.clear()
+    # await state.get_state(Opport.opport_menu)
+    await message.answer(application_text_google, reply_markup=application_button)
