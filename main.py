@@ -19,8 +19,10 @@ async def start():
     dp.message.register(greeting_application, LK.phone)
     dp.message.register(Opportunities,lambda message: message.text == "Возможности")
     dp.callback_query.register(opport_tab,F.data.startswith("opport_"))
-    dp.message.register(back_callback, lambda message: message.text == "Вернуться в главное меню")
+    dp.callback_query.register(opport_tab_two,F.data.startswith("opporttab_"))
 
+    # dp.message.register(back_callback, lambda message: message.text == "Вернуться в главное меню")
+    # сделать проверку по пользователям и возвращать на кнопки возможности, спикеры....
     
 
     # dp.message.register()

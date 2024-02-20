@@ -15,10 +15,10 @@ def opport_but(): # собирает кнопки из гугл таблицы
     but.adjust(1)
     return but.as_markup()
 
-def opport_tab_but(strok): # собирает кнопки 2 уровня из гугл таблицы
+def opport_tab_but(but_text,strok): # собирает кнопки 2 уровня из гугл таблицы
     but =  InlineKeyboardBuilder()
-    but_text = worksheet_no_pay.cell(strok,4).value #сначала строка потом столбец
-    but.button(text=but_text,callback_data=f"opport_tab_{strok}") # указывается строчка на котрочкой расположена кнопка
+    # but_text = worksheet_no_pay.cell(strok,4).value #сначала строка потом столбец
+    but.button(text=but_text,callback_data=f"opporttab_{strok}") # указывается строчка на котрочкой расположена кнопка
     # but.button(text="Вернуться в главн меню",callback_data=f"Back") # указывается строчка на котрочкой расположена кнопка
     but.adjust(1)
     return but.as_markup()
@@ -26,10 +26,9 @@ def opport_tab_but(strok): # собирает кнопки 2 уровня из �
 
 
 
-def but_pay(strok):
+def but_pay(but_text):
     but = InlineKeyboardBuilder()
-    s = worksheet_no_pay.cell(4,strok)
-    but.button(text= s, callback_data="pay")
+    but.button(text= but_text, callback_data="pay")
     but.adjust(1)
     return but.as_markup()
 

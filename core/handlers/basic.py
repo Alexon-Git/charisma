@@ -17,6 +17,9 @@ from core.message.opport_text import *
 #         await database.set_new_user(user_id= message.from_user.id,username= message.from_user.first_name)
 
 
+
+
+
 class LK(StatesGroup):
     name = State()
     phone = State()
