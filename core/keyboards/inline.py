@@ -24,14 +24,32 @@ def opport_tab_but(but_text,strok): # собирает кнопки 2 уровн
     return but.as_markup()
 
 
-
-
 def but_pay(but_text):
     but = InlineKeyboardBuilder()
     but.button(text= but_text, callback_data="pay")
     but.adjust(1)
     return but.as_markup()
 
+
+def but_speakers(sheet,s):
+    but = InlineKeyboardBuilder()
+    v = int(len(sheet))-1
+    strel_L = "◀️"
+    strel_R = "▶️"
+    crest = "✖"
+    call_L = "count_-1"
+    call_R = "count_+1"
+    if int(s) == 1:
+        strel_L = crest
+        call_L = "__"
+    if int(s) == (int(len(sheet))-1):
+        strel_R = crest
+        call_R = "__"
+    but.button(text=strel_L, callback_data=call_L)
+    but.button(text= f"{s}/{v}", callback_data="__")
+    but.button(text=strel_R, callback_data=call_R)
+    but.adjust(3)
+    return but.as_markup()
 
 
 

@@ -1,4 +1,4 @@
-from core.settings import worksheet_no_pay
+from core.settings import worksheet_no_pay, worksheet_speaker
 
 
 def all_sheet_no_pay():
@@ -6,6 +6,9 @@ def all_sheet_no_pay():
     return sheet
 
 
+def all_sheet_speakers():
+    sheet = worksheet_speaker.get_all_values()
+    return sheet
 
 
 

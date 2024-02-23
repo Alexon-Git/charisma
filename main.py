@@ -16,13 +16,15 @@ async def start():
     dp.callback_query.register(reg_name, F.data.startswith("political"))
     dp.message.register(reg_phone, LK.name)
     # dp.message.register(check_CRM, LK.phone)
-    dp.message.register(greeting_application, LK.phone)
+    dp.message.register(greeting_application, LK.phone) #Главное меню
     dp.message.register(Opportunities,lambda message: message.text == "Возможности")
     dp.callback_query.register(opport_tab,F.data.startswith("opport_"))
     dp.callback_query.register(opport_tab_two,F.data.startswith("opporttab_"))
 
     # dp.message.register(back_callback, lambda message: message.text == "Вернуться в главное меню")
     # сделать проверку по пользователям и возвращать на кнопки возможности, спикеры....
+    dp.message.register(Speaker,lambda message: message.text == "Спикеры")
+    dp.callback_query.register(skip_speaker,F.data.startswith("count_"))
     
 
     # dp.message.register()
