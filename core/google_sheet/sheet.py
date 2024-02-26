@@ -1,4 +1,4 @@
-from core.settings import worksheet_no_pay, worksheet_speaker
+from core.settings import *
 
 
 def all_sheet_no_pay():
@@ -11,5 +11,16 @@ def all_sheet_speakers():
     return sheet
 
 
+def all_tariff():
+    tariffs = worksheet_tariffs.col_values(1)
+    return tariffs
+
+def msg_tarif():
+    msg = worksheet_tariffs.cell(2, 3).value  # строка столбец
+    print(worksheet_tariffs.get_all_values())
+    return msg
 
 
+def text_timetable():
+    text = worksheet_Dop.cell(2,1).value
+    return text

@@ -17,7 +17,10 @@ from core.message.opport_text import *
 #         await database.set_new_user(user_id= message.from_user.id,username= message.from_user.first_name)
 
 
-
+async def main_menu(message:Message,state:FSMContext):
+    #сделать проверку оплативших
+    await state.clear()
+    await message.answer(application_text_google, reply_markup=application_button)
 
 
 class LK(StatesGroup):

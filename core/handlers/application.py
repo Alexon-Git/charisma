@@ -5,8 +5,7 @@ from aiogram.types import Message,CallbackQuery
 from core.keyboards.inline import *
 from core.keyboards.reply import *
 from core.message.opport_text import *
-from core.google_sheet.sheet import all_sheet_no_pay,all_sheet_speakers
-
+from core.google_sheet.sheet import *
 class Opport(StatesGroup):
     opport_menu = State()
     tab_one = State()
@@ -16,21 +15,21 @@ class Speakers(StatesGroup):
     counter = State()
 
 
-async def back_callback(call: CallbackQuery, state: FSMContext,bot:Bot): # функция возвращения назад
-    state_name = await state.get_state()
-    print(state_name)
-    if state_name == Opport.tab_one.state :
-        print("провалился в меню возможности")
-        await state.set_state(Opport.opport_menu)
-        await call.message.answer("Что интересно узнать?", reply_markup=opport_but())
-        # await call.message.answer("Выберите модель:", reply_markup=model(price(brand),1))
-    elif state_name == Opport.tab_two.state :
-        await state.set_state(Opport.tab_one)
-        s = (call.data).split('_')
-        strok = s[1]
-        text = worksheet_no_pay.cell(strok,3).value
-        print(text)
-        await call.message.edit_text(text, reply_markup=opport_tab_but(strok))
+# async def back_callback(call: CallbackQuery, state: FSMContext,bot:Bot): # функция возвращения назад
+#     state_name = await state.get_state()
+#     print(state_name)
+#     if state_name == Opport.tab_one.state :
+#         print("провалился в меню возможности")
+#         await state.set_state(Opport.opport_menu)
+#         await call.message.answer("Что интересно узнать?", reply_markup=opport_but())
+#         # await call.message.answer("Выберите модель:", reply_markup=model(price(brand),1))
+#     elif state_name == Opport.tab_two.state :
+#         await state.set_state(Opport.tab_one)
+#         s = (call.data).split('_')
+#         strok = s[1]
+#         text = worksheet_no_pay.cell(strok,3).value
+#         print(text)
+#         await call.message.edit_text(text, reply_markup=opport_tab_but(strok))
 
         
 
@@ -110,3 +109,16 @@ async def skip_speaker(call:CallbackQuery, state: FSMContext,bot:Bot):
         await state.update_data(cnt = cnt)
         await call.message.answer_photo(photo, caption=f"{name}\n\n{text}",reply_markup=but_speakers(sheet,cnt))
         await bot.delete_message(call.from_user.id, call.message.message_id)
+
+    #Расписание
+async def timetable(message:Message,state:FSMContext):
+    await message.answer(text_timetable())
+
+
+    #Тарифы
+        
+async def tariff(message:Message, state:FSMContext,call:CallbackQuery):
+    text = msg_tarif()
+    # await call.answer(text="",reply_markup=back_but)
+    await message.answer(text,reply_markup=types_tariff())
+

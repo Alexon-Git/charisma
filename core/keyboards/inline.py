@@ -1,5 +1,5 @@
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from core.settings import worksheet_no_pay
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
+from core.settings import worksheet_no_pay, worksheet_tariffs
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 soglasie = InlineKeyboardMarkup(inline_keyboard=[
@@ -52,7 +52,25 @@ def but_speakers(sheet,s):
     return but.as_markup()
 
 
-
+def types_tariff():
+    but = InlineKeyboardBuilder()
+    sheet = worksheet_tariffs.get_all_values()
+    types = worksheet_tariffs.col_values(1)[1:]
+    print(types)
+    links = worksheet_tariffs.col_values(2)[1:]
+    print(links)
+    if int(len(links)) > 0:
+        print(0)
+        for i in range(len(types)): # кнопки на web app
+            but.button(text=types[i], web_app=WebAppInfo(url=f'https://ya.ru/')) 
+        but.adjust(2)
+        return but.as_markup()
+    else:
+        print(1)
+        for i in range(len(types)): # кнопки на сайт
+            but.button(text=types[i],url=f"{sheet[1][4]}") 
+        but.adjust(2)
+        return but.as_markup()
 
 
 find_partner_but = InlineKeyboardMarkup(inline_keyboard=[
