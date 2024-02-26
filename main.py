@@ -22,7 +22,7 @@ async def start():
     dp.callback_query.register(opport_tab_two,F.data.startswith("opporttab_"))
 
     dp.message.register(main_menu, lambda message: message.text == "Вернуться в главное меню")
-    # сделать проверку по пользователям и возвращать на кнопки возможности, спикеры....
+    # сделать кнопки назад только для возможностей
     dp.message.register(Speaker,lambda message: message.text == "Спикеры")
     dp.callback_query.register(skip_speaker,F.data.startswith("count_"))
 
