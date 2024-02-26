@@ -117,7 +117,7 @@ async def timetable(message:Message,state:FSMContext):
 
     #Тарифы
         
-async def tariff(message:Message, state:FSMContext,call:CallbackQuery):
+async def tariff(message:Message, state:FSMContext):
     text = msg_tarif()
     # await call.answer(text="",reply_markup=back_but)
     await message.answer(text,reply_markup=types_tariff())

@@ -62,7 +62,7 @@ def types_tariff():
     if int(len(links)) > 0:
         print(0)
         for i in range(len(types)): # кнопки на web app
-            but.button(text=types[i], web_app=WebAppInfo(url=f'https://ya.ru/')) 
+            but.button(text=types[i], web_app=WebAppInfo(url=f'https://b24-uprvj5.bitrix24.site/crm_form_cph4i/')) 
         but.adjust(2)
         return but.as_markup()
     else:
