@@ -29,6 +29,7 @@ async def start():
     dp.message.register(timetable,lambda message: message.text == "Расписание")
     dp.message.register(tariff,lambda message: message.text == "Тарифы")
 
+    dp.message.register(timetable,lambda message: message.text == "Как проехать")
 
     
 
