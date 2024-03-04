@@ -19,10 +19,32 @@ application_button = ReplyKeyboardMarkup(
                 [
                     KeyboardButton(text="Расписание"),
                     KeyboardButton(text="Тарифы"),
+                ],
+                [
+                    KeyboardButton(text="Уже оплатил"),
                 ]
             ],
             resize_keyboard=True,
         )
+
+paid_button = ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton(text="Расписание"),
+                    KeyboardButton(text="Как проехать"),
+                ],
+                [
+                    KeyboardButton(text="Задать вопрос спикеру"),
+                    KeyboardButton(text="Нетворкинг чат"),
+                ],
+                [
+                    KeyboardButton(text="Наши партнеры"),
+                    KeyboardButton(text="Скачать стикер-пак"),
+                ]
+            ],
+            resize_keyboard=True,
+        )
+
 
 
 back_but = ReplyKeyboardMarkup(

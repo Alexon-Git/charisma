@@ -6,6 +6,8 @@ from core.keyboards.inline import *
 from core.keyboards.reply import *
 from core.message.text import *
 from core.message.opport_text import *
+from core.settings import worksheet_paid
+from core.google_sheet.sheet import text_paid
 # from core.settings import cursor, connection   # переменная подключения к базе
 # import database
 
@@ -20,7 +22,7 @@ from core.message.opport_text import *
 async def main_menu(message:Message,state:FSMContext):
     #сделать проверку оплативших
     await state.clear()
-    await message.answer(application_text_google, reply_markup=application_button)
+    await message.answer(application_text_google, reply_markup=application_button, parse_mode="html")
 
 
 class LK(StatesGroup):
@@ -29,7 +31,7 @@ class LK(StatesGroup):
     size = State()
 
 async def start_command(message: Message):
-    await message.answer(start_text, reply_markup=soglasie)
+    await message.answer(start_text, reply_markup=soglasie,)
 
 async def reg_name(call: CallbackQuery, state: FSMContext):
     await state.set_state(LK.name)
@@ -39,7 +41,7 @@ async def reg_name(call: CallbackQuery, state: FSMContext):
 #сохзранение в базу id и указанное имя
 async def reg_phone(message: Message, state: FSMContext):
     await state.set_state(LK.phone)
-    await message.answer( f"Приятно прознакомиться {message.from_user.first_name}. Напишите свой номер телефона, чтобы я нашел Вас в базе", reply_markup=phone)
+    await message.answer( f"Приятно прознакомиться {message.from_user.first_name}. Напишите или отправте свой номер телефона, чтобы я нашел Вас в базе", reply_markup=phone,  parse_mode="html")
 
 
 # происходить проверка по CRM
@@ -53,3 +55,15 @@ async def greeting_application(message: Message, state: FSMContext):
     await state.clear()
     # await state.get_state(Opport.opport_menu)
     await message.answer(application_text_google, reply_markup=application_button)
+
+
+async def check(message: Message, state: FSMContext):
+    # https://t.me/idenphonesBot?start=8899
+    text = text_paid()
+    await message.answer(text, reply_markup=paid_button)
+
+
+
+
+
+

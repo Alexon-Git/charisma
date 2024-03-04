@@ -22,5 +22,21 @@ def msg_tarif():
 
 
 def text_timetable():
-    text = worksheet_Dop.cell(2,1).value
+    text = worksheet_paid.cell(3,3).value
+    return text
+
+def text_paid():
+    text = worksheet_paid.cell(2,1).value
+    return  text
+
+def text_how_get_there():
+    text = worksheet_paid.cell(4,3).value
+    return text
+
+def text_our_partner():
+    text = worksheet_paid.cell(5,3).value
+    return text
+
+def text_download():
+    text = worksheet_paid.cell(6,3).value
     return text

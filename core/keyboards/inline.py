@@ -52,7 +52,7 @@ def but_speakers(sheet,s):
     return but.as_markup()
 
 
-def types_tariff():
+def types_tariff(): # Кнопки тарифа
     but = InlineKeyboardBuilder()
     sheet = worksheet_tariffs.get_all_values()
     types = worksheet_tariffs.col_values(1)[1:]

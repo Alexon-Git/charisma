@@ -35,6 +35,7 @@ sheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1CdDH-Np5juUX
 worksheet_no_pay= sheet.worksheet('Оставившие заявку')
 worksheet_speaker = sheet.worksheet('Спикеры')
 worksheet_tariffs = sheet.worksheet('Тарифы')
-worksheet_Dop = sheet.worksheet('ДОП инфо')
+worksheet_dop = sheet.worksheet('ДОП инфо')
+worksheet_paid = sheet.worksheet('Оплатившие')
 
 
