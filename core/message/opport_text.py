@@ -1,6 +1,6 @@
 import gspread
 from core.settings import worksheet_no_pay
-application_text_google = worksheet_no_pay.cell(3, 1).value
+application_text_google = str(worksheet_no_pay.cell(3, 1).value)
 # application_text = f"{message.for_user.first_name}, кажется, Вы еще не купили билет. Посмотрите  видео приглашение от спикера форума, чтобы быстрее принять решение."
 
 

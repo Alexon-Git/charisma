@@ -1,10 +1,15 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
-from core.settings import worksheet_no_pay, worksheet_tariffs
+from core.settings import worksheet_no_pay, worksheet_tariffs, worksheet_speaker
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 soglasie = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text="Даю согласие", callback_data="political")],
+    [InlineKeyboardButton(text="Политикой конфиденциальности", web_app=WebAppInfo(url=f'https://pixel24.ru/page_images/files/руководствопользователя%20Canon%20LEGRIA%20HF%20R806.pdf'))],
+    [InlineKeyboardButton(text="Даю согласие", callback_data="political")]
 ])
+
+# tariff_in_but = InlineKeyboardMarkup(inline_keyboard=[
+#     [InlineKeyboardButton(text="Перейти к оплате", callback_data="tariff_")],
+# ])
 
 
 def opport_but(): # собирает кнопки из гугл таблицы
@@ -88,4 +93,33 @@ stocks_but = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="Купить билет", callback_data="buy_ticket")],
 ])
 
+ 
+def speaker_but(): # Кнопки тарифа
+    but = InlineKeyboardBuilder()
+    # sheet = worksheet_speaker.get_all_values()
+    speaker = worksheet_speaker.col_values(1)[1:]
+    for i in speaker:
+        but.button(text=i, callback_data=f'speaker_{str(i)}')
+        print(i) 
+    
+    but.adjust(1)
+    return but.as_markup()
+
+
+
+    # print(types)
+    # links = worksheet_tariffs.col_values(2)[1:]
+    # print(links)
+    # if int(len(links)) > 0:
+        # print(0)
+        # for i in range(len(types)): # кнопки на web app
+            # but.button(text=types[i], web_app=WebAppInfo(url=f'https://b24-uprvj5.bitrix24.site/crm_form_cph4i/')) 
+        # but.adjust(2)
+        # return but.as_markup()
+    # else:
+        # print(1)
+        # for i in range(len(types)): # кнопки на сайт
+            # but.button(text=types[i],url=f"{sheet[1][4]}") 
+        # but.adjust(2)
+        # return but.as_markup()
 

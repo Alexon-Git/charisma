@@ -123,4 +123,9 @@ async def tariff(message:Message, state:FSMContext):
     text = msg_tarif()
     # await call.answer(text="",reply_markup=back_but)
     await message.answer(text,reply_markup=types_tariff())
+async def tariff_in(call: CallbackQuery):
+    await call.answer()
+    text = msg_tarif()
+    # await call.answer(text="",reply_markup=back_but)
+    await call.message.answer(text,reply_markup=types_tariff())
 

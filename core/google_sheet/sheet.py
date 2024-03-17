@@ -26,7 +26,8 @@ def text_timetable():
     return text
 
 def text_paid():
-    text = worksheet_paid.cell(2,1).value
+    text = str(worksheet_paid.cell(2,1).value)
+    print(text)
     return  text
 
 def text_how_get_there():

@@ -18,7 +18,7 @@ async def start():
     # dp.callback_query.register(reg_name, F.data.startswith("political"))
     # dp.message.register(reg_phone, LK.name)
     # dp.message.register(check_CRM, LK.phone)
-    dp.message.register(greeting_application, LK.phone) #Главное меню
+    dp.message.register(check_CRM, LK.phone) #Главное меню
     dp.callback_query.register(opport_tab,F.data.startswith("opport_"))
     dp.callback_query.register(opport_tab_two,F.data.startswith("opporttab_"))
     dp.callback_query.register(skip_speaker,F.data.startswith("count_"))
@@ -28,6 +28,8 @@ async def start():
     dp.message.register(Speaker,lambda message: message.text == "Спикеры")
     dp.message.register(check,lambda message: message.text == "Уже оплатил")
     dp.message.register(tariff,lambda message: message.text == "Тарифы")
+    dp.callback_query.register(tariff_in, F.data.startswith("pay"))
+
 
 
     dp.message.register(timetable,lambda message: message.text == "Расписание")
@@ -35,7 +37,9 @@ async def start():
 
     dp.message.register(how_get_there,lambda message: message.text == "Как проехать")
     # dp.message.register(chek,lambda message: message.text == "Нетворкинг чат")
-    # dp.message.register(chek,lambda message: message.text == "Задать вопрос спикеру")
+    dp.message.register(question_spiker,lambda message: message.text == "Задать вопрос спикеру")
+    dp.callback_query.register(choose_question, F.data.startswith("speaker_")) 
+    dp.message.register(sending_question, SP.choice) 
     dp.message.register(our_partners,lambda message: message.text == "Наши партнеры")
     dp.message.register(download,lambda message: message.text == "Скачать стикер-пак")
 
